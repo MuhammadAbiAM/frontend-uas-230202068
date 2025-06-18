@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ObatExport;
 
 class ObatController extends Controller
 {
@@ -92,5 +95,17 @@ class ObatController extends Controller
         }
 
         return back()->withErrors(['error' => 'Gagal menghapus obat.']);
+    }
+
+    public function exportPdf()
+    {
+        $obat = Http::get($this->apiUrl)->json();
+        $pdf = PDF::loadView('obat.pdf', compact('obat'));
+        return $pdf->download('data_obat.pdf');
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new ObatExport, 'data_obat.xlsx');
     }
 }

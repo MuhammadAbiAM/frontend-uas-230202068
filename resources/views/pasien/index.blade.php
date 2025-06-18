@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-between align-items-center mb-2">
         <h2>Data Pasien</h2>
         <form action="{{ route('pasien.index') }}" method="GET" class="d-flex">
-            <input type="text" name="search" class="form-control me-2" placeholder="Cari..." value="{{ request('search') }}">
+            <input type="text" name="search" class="form-control me-2" placeholder="Cari ..." value="{{ request('search') }}">
             <button type="submit" class="btn btn-secondary">Cari</button>
         </form>
     </div>
@@ -44,7 +44,6 @@
         </tbody>
     </table>
 
-    {{-- Tombol Export di bawah tabel --}}
     <div class="d-flex justify-content-end mt-2">
         <a href="{{ route('pasien.export.pdf') }}" class="btn btn-danger me-2">Export PDF</a>
         <a href="{{ route('pasien.export.excel') }}" class="btn btn-success">Export Excel</a>

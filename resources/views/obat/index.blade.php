@@ -1,14 +1,15 @@
 @extends('dashboard')
 
 @section('content')
-    <h2>Data Obat</h2>
-    <a href="{{ route('obat.create') }}" class="btn btn-primary mb-3">+ Tambah Obat</a>
-    <form action="{{ route('obat.index') }}" method="GET" class="mb-3">
-        <input type="text" name="search" class="form-control d-inline w-25" placeholder="Cari..."
-            value="{{ request('search') }}">
-        <button type="submit" class="btn btn-secondary">Cari</button>
-    </form>
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h2>Data Obat</h2>
+        <form action="{{ route('obat.index') }}" method="GET" class="d-flex">
+            <input type="text" name="search" class="form-control me-2" placeholder="Cari ..." value="{{ request('search') }}">
+            <button type="submit" class="btn btn-secondary">Cari</button>
+        </form>
+    </div>
 
+    <a href="{{ route('obat.create') }}" class="btn btn-primary mb-3">+ Tambah Obat</a>
 
     <table class="table table-bordered">
         <thead>
@@ -42,4 +43,9 @@
             @endforeach
         </tbody>
     </table>
+
+    <div class="d-flex justify-content-end mt-2">
+        <a href="{{ route('obat.export.pdf') }}" class="btn btn-danger me-2">Export PDF</a>
+        <a href="{{ route('obat.export.excel') }}" class="btn btn-success">Export Excel</a>
+    </div>
 @endsection
